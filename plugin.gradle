@@ -6,7 +6,7 @@ static def downloadFile(url, filename) {
 
     connection.requestMethod = 'GET'
 
-    def projectDir = project.projectDir.absolutePath
+    def projectDir = rootProject.projectDir
 
     try {
         def inputStream = connection.inputStream
