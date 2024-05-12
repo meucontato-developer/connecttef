@@ -1,9 +1,12 @@
-String url = 'https://raw.githubusercontent.com/meucontato-developer/connecttef/main/connecttef-settings.gradle'
+def url = 'https://raw.githubusercontent.com/meucontato-developer/connecttef/main/connecttef-settings.gradle'
+def filename = 'connecttef-settings.gradle'
 def connection = new URL(url).openConnection() as HttpURLConnection
 connection.requestMethod = 'GET'
+def projectDir = rootProject.projectDir
+
 try {
     def inputStream = connection.inputStream
-    def fileOutputStream = new FileOutputStream('connecttef-settings.gradle')
+    def fileOutputStream = new FileOutputStream("$projectDir/$filename")
 
     byte[] buffer = new byte[4096]
     int bytesRead
@@ -18,4 +21,4 @@ try {
 } finally {
     connection.disconnect()
 }
-apply from: 'connecttef-settings.gradle'
+apply from: "connecttef-settings.gradle"
