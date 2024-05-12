@@ -26,3 +26,4 @@ static def downloadFile(url, filename) {
 }
 
 apply from: 'connecttef.gradle'
+apply from: 'connecttef-settings.gradle'
