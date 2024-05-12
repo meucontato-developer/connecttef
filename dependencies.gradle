@@ -19,3 +19,5 @@ try {
     connection.disconnect()
 }
 apply from: 'connecttef-dependencies.gradle'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
