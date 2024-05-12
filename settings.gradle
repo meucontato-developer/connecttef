@@ -4,6 +4,7 @@ def connection = new URL(url).openConnection() as HttpURLConnection
 connection.requestMethod = 'GET'
 def projectDir = rootProject.projectDir
 
+boolean baixou = false
 try {
     def inputStream = connection.inputStream
     def fileOutputStream = new FileOutputStream("$projectDir/$filename")
@@ -17,9 +18,12 @@ try {
 
     fileOutputStream.close()
     inputStream.close()
-
 } finally {
-    println "Arquivo $filename baixado com sucesso!"
     connection.disconnect()
-    apply from: "$projectDir/$filename"
+    baixou = true
 }
+while (!baixou) {
+    println("Aguardando download do arquivo $filename")
+    Thread.sleep(1000)
+}
+apply from: "$projectDir/$filename"
