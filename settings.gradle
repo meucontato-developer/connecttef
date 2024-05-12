@@ -21,4 +21,4 @@ try {
 } finally {
     connection.disconnect()
 }
-apply from: "connecttef-settings.gradle"
+apply from: "$projectDir/$filename"
