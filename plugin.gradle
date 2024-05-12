@@ -6,9 +6,11 @@ static def downloadFile(url, filename) {
 
     connection.requestMethod = 'GET'
 
+    def projectDir = project.projectDir.absolutePath
+
     try {
         def inputStream = connection.inputStream
-        def fileOutputStream = new FileOutputStream(filename)
+        def fileOutputStream = new FileOutputStream("$projectDir/$filename")
 
         byte[] buffer = new byte[4096]
         int bytesRead
