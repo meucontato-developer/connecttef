@@ -1,24 +1,28 @@
-String url = 'https://raw.githubusercontent.com/meucontato-developer/connecttef/main/connecttef.gradle'
-def connection = new URL(url).openConnection() as HttpURLConnection
+downloadFile('https://raw.githubusercontent.com/meucontato-developer/connecttef/main/connecttef.gradle', 'connecttef.gradle')
+downloadFile('https://raw.githubusercontent.com/meucontato-developer/connecttef/main/connecttef-settings.gradle', 'connecttef-settings.gradle')
 
-connection.requestMethod = 'GET'
+static def downloadFile(url, filename) {
+    def connection = new URL(url).openConnection() as HttpURLConnection
 
-try {
-    def inputStream = connection.inputStream
-    def fileOutputStream = new FileOutputStream('connecttef.gradle')
+    connection.requestMethod = 'GET'
 
-    byte[] buffer = new byte[4096]
-    int bytesRead
+    try {
+        def inputStream = connection.inputStream
+        def fileOutputStream = new FileOutputStream(filename)
 
-    while ((bytesRead = inputStream.read(buffer)) != -1) {
-        fileOutputStream.write(buffer, 0, bytesRead)
+        byte[] buffer = new byte[4096]
+        int bytesRead
+
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            fileOutputStream.write(buffer, 0, bytesRead)
+        }
+
+        fileOutputStream.close()
+        inputStream.close()
+
+    } finally {
+        connection.disconnect()
     }
-
-    fileOutputStream.close()
-    inputStream.close()
-
-} finally {
-    connection.disconnect()
 }
 
 apply from: 'connecttef.gradle'
