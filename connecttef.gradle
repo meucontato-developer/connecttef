@@ -25,6 +25,7 @@ ext {
 
             ],
             pagseguro                : [
+                    'br.com.pdvpos:connecttef-pagseguro:0.0.3-SNAPSHOT',
                     'br.com.maqplan.android:sdk-pagseguro:1.7-SNAPSHOT',
                     'br.com.uol.pagseguro.plugpagservice.wrapper:wrapper:1.25.0',
                     "com.squareup.retrofit2:converter-gson:2.9.0",
