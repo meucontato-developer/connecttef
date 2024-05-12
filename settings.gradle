@@ -21,4 +21,7 @@ try {
 } finally {
     connection.disconnect()
 }
-apply from: "connecttef-settings.gradle"
+// Cannot convert relative path connecttef-settings.gradle to an absolute file.
+// para resolver o erro acima, é necessário informar o caminho absoluto do arquivo da seguinte forma:
+ apply from: "$projectDir/$filename"
+//apply from: "connecttef-settings.gradle"
